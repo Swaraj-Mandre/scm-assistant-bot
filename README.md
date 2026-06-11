@@ -15,6 +15,8 @@ A RAG-based supply chain chatbot built with Flowise that answers questions about
 | Vector Store | Qdrant Cloud |
 | Data Sources | SupplyChain_Governance_Policy_v3.2.pdf + supplier_summaries.txt |
 
+>> Used Groq's "llama-3.3-70b-versatile initially" , but switched to Mistral due to free-tier token exhaustion.
+
 ## Architecture
 ```
 PDF + Supplier Data
