@@ -1,4 +1,4 @@
-# SCM Assistant Bot — BQBYTE Technologies Supply Chain Chatbot
+# SCM Assistant Bot :- BQBYTE Technologies Supply Chain Chatbot
 
 ## Public Chatbot URL
 https://cloud.flowiseai.com/chatbot/b146ee8b-489d-4489-914c-697504457bee
