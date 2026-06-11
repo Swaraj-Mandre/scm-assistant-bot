@@ -40,7 +40,7 @@ Public Chatbot URL
 - CSV: Recursive Character Text Splitter, Chunk Size 500, Overlap 50 → 4000 chunks
 - Result: Too many chunks, retrieval quality poor, LLM context flooded
 
-### Configuration 2 (Final — Used)
+### Configuration 2 (Final - Used)
 - PDF: Recursive Character Text Splitter, Chunk Size 1000, Overlap 200 → 19 chunks
 - Supplier Summaries: Recursive Character Text Splitter, Chunk Size 500, Overlap 50 → 126 chunks
 - Analytical Summaries: No splitter → 5 chunks (one per key business question)
@@ -75,8 +75,8 @@ APAC has the highest spend at $131,620,356.14 (37.0% of total $356,045,248.18). 
 Packaging Materials has the highest average defect rate at 1.91% across all POs. Below the Tier-2 ceiling of 2.50% per Policy §3.2 — no breach, but approaching the limit.
 
 ## What I Would Improve
-1. **Replace supplier_summaries.txt with direct CSV ingestion** — current Flowise Cloud free tier times out on 2000-row CSV upsert. Self-hosted Flowise or paid tier would handle this properly.
-2. **Add metadata filtering** — tag each chunk with supplier tier, region, risk level for precise filtered retrieval instead of semantic search alone.
-3. **Increase Top K dynamically** — for aggregate queries (list all X), use higher K; for specific lookups, use lower K.
-4. **Add conversation memory persistence** — current setup uses in-session memory only.
-5. **Hybrid search** — combine semantic search with keyword search for exact supplier ID lookups.
+1. **Replace supplier_summaries.txt with direct CSV ingestion** = current Flowise Cloud free tier times out on 2000-row CSV upsert. Self-hosted Flowise or paid tier would handle this properly.
+2. **Add metadata filtering** = tag each chunk with supplier tier, region, risk level for precise filtered retrieval instead of semantic search alone.
+3. **Increase Top K dynamically** = for aggregate queries (list all X), use higher K; for specific lookups, use lower K.
+4. **Add conversation memory persistence** = current setup uses in-session memory only.
+5. **Hybrid search** = combine semantic search with keyword search for exact supplier ID lookups.
