@@ -1,0 +1,603 @@
+{
+  "nodes": [
+    {
+      "id": "groqChat_0",
+      "position": {
+        "x": -168.55270541687156,
+        "y": -395.5266533924122
+      },
+      "type": "customNode",
+      "data": {
+        "id": "groqChat_0",
+        "label": "Groq",
+        "version": 4,
+        "name": "groqChat",
+        "type": "GroqChat",
+        "baseClasses": [
+          "GroqChat",
+          "BaseChatModel",
+          "BaseLanguageModel",
+          "Runnable"
+        ],
+        "category": "Chat Models",
+        "description": "Wrapper around Groq API with LPU Inference Engine",
+        "inputParams": [
+          {
+            "label": "Connect Credential",
+            "name": "credential",
+            "type": "credential",
+            "credentialNames": [
+              "groqApi"
+            ],
+            "optional": true,
+            "id": "groqChat_0-input-credential-credential",
+            "display": true
+          },
+          {
+            "label": "Model Name",
+            "name": "modelName",
+            "type": "asyncOptions",
+            "loadMethod": "listModels",
+            "placeholder": "llama3-70b-8192",
+            "id": "groqChat_0-input-modelName-asyncOptions",
+            "display": true
+          },
+          {
+            "label": "Temperature",
+            "name": "temperature",
+            "type": "number",
+            "step": 0.1,
+            "default": 0.9,
+            "optional": true,
+            "id": "groqChat_0-input-temperature-number",
+            "display": true
+          },
+          {
+            "label": "Max Tokens",
+            "name": "maxTokens",
+            "type": "number",
+            "step": 1,
+            "optional": true,
+            "additionalParams": true,
+            "id": "groqChat_0-input-maxTokens-number",
+            "display": true
+          },
+          {
+            "label": "Streaming",
+            "name": "streaming",
+            "type": "boolean",
+            "default": true,
+            "optional": true,
+            "id": "groqChat_0-input-streaming-boolean",
+            "display": true
+          }
+        ],
+        "inputAnchors": [
+          {
+            "label": "Cache",
+            "name": "cache",
+            "type": "BaseCache",
+            "optional": true,
+            "id": "groqChat_0-input-cache-BaseCache",
+            "display": true
+          }
+        ],
+        "inputs": {
+          "cache": "",
+          "modelName": "llama-3.3-70b-versatile",
+          "temperature": "0.2",
+          "maxTokens": "",
+          "streaming": true
+        },
+        "outputAnchors": [
+          {
+            "id": "groqChat_0-output-groqChat-GroqChat|BaseChatModel|BaseLanguageModel|Runnable",
+            "name": "groqChat",
+            "label": "GroqChat",
+            "description": "Wrapper around Groq API with LPU Inference Engine",
+            "type": "GroqChat | BaseChatModel | BaseLanguageModel | Runnable"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "width": 300,
+      "height": 676,
+      "selected": false,
+      "positionAbsolute": {
+        "x": -168.55270541687156,
+        "y": -395.5266533924122
+      },
+      "dragging": false
+    },
+    {
+      "id": "conversationalRetrievalQAChain_0",
+      "position": {
+        "x": 935.3026089478051,
+        "y": -339.5886461126846
+      },
+      "type": "customNode",
+      "data": {
+        "id": "conversationalRetrievalQAChain_0",
+        "label": "Conversational Retrieval QA Chain",
+        "version": 3,
+        "name": "conversationalRetrievalQAChain",
+        "type": "ConversationalRetrievalQAChain",
+        "baseClasses": [
+          "ConversationalRetrievalQAChain",
+          "BaseChain",
+          "Runnable"
+        ],
+        "category": "Chains",
+        "description": "Document QA - built on RetrievalQAChain to provide a chat history component",
+        "inputParams": [
+          {
+            "label": "Return Source Documents",
+            "name": "returnSourceDocuments",
+            "type": "boolean",
+            "optional": true,
+            "id": "conversationalRetrievalQAChain_0-input-returnSourceDocuments-boolean",
+            "display": true
+          },
+          {
+            "label": "Rephrase Prompt",
+            "name": "rephrasePrompt",
+            "type": "string",
+            "description": "Using previous chat history, rephrase question into a standalone question",
+            "warning": "Prompt must include input variables: {chat_history} and {question}",
+            "rows": 4,
+            "additionalParams": true,
+            "optional": true,
+            "default": "Given the following conversation and a follow up question, rephrase the follow up question to be a standalone question.\n\nChat History:\n{chat_history}\nFollow Up Input: {question}\nStandalone Question:",
+            "id": "conversationalRetrievalQAChain_0-input-rephrasePrompt-string",
+            "display": true
+          },
+          {
+            "label": "Response Prompt",
+            "name": "responsePrompt",
+            "type": "string",
+            "description": "Taking the rephrased question, search for answer from the provided context",
+            "warning": "Prompt must include input variable: {context}",
+            "rows": 4,
+            "additionalParams": true,
+            "optional": true,
+            "default": "I want you to act as a document that I am having a conversation with. Your name is \"AI Assistant\". Using the provided context, answer the user's question to the best of your ability using the resources provided.\nIf there is nothing in the context relevant to the question at hand, just say \"Hmm, I'm not sure\" and stop after that. Refuse to answer any question not about the info. Never break character.\n------------\n{context}\n------------\nREMEMBER: If there is no relevant information within the context, just say \"Hmm, I'm not sure\". Don't try to make up an answer. Never break character.",
+            "id": "conversationalRetrievalQAChain_0-input-responsePrompt-string",
+            "display": true
+          }
+        ],
+        "inputAnchors": [
+          {
+            "label": "Chat Model",
+            "name": "model",
+            "type": "BaseChatModel",
+            "id": "conversationalRetrievalQAChain_0-input-model-BaseChatModel",
+            "display": true
+          },
+          {
+            "label": "Vector Store Retriever",
+            "name": "vectorStoreRetriever",
+            "type": "BaseRetriever",
+            "id": "conversationalRetrievalQAChain_0-input-vectorStoreRetriever-BaseRetriever",
+            "display": true
+          },
+          {
+            "label": "Memory",
+            "name": "memory",
+            "type": "BaseMemory",
+            "optional": true,
+            "description": "If left empty, a default BufferMemory will be used",
+            "id": "conversationalRetrievalQAChain_0-input-memory-BaseMemory",
+            "display": true
+          },
+          {
+            "label": "Input Moderation",
+            "description": "Detect text that could generate harmful output and prevent it from being sent to the language model",
+            "name": "inputModeration",
+            "type": "Moderation",
+            "optional": true,
+            "list": true,
+            "id": "conversationalRetrievalQAChain_0-input-inputModeration-Moderation",
+            "display": true
+          }
+        ],
+        "inputs": {
+          "model": "{{groqChat_0.data.instance}}",
+          "vectorStoreRetriever": "{{qdrant_0.data.instance}}",
+          "memory": "",
+          "returnSourceDocuments": true,
+          "rephrasePrompt": "Given the following conversation and a follow up question, rephrase the follow up question to be a standalone question.\n\nChat History:\n{chat_history}\nFollow Up Input: {question}\nStandalone Question:",
+          "responsePrompt": "You are a supply chain data analyst for BQBYTE Technologies. Answer questions using the supplier records and policy documents in the context below.\n\nIMPORTANT INSTRUCTIONS:\n- Supplier records contain fields: Supplier_ID, Supplier_Name, Contract_Tier, Risk_Level, Active_Disruptions, Compliance_Score, OTD_Rate_Pct, Defect_Rate_Pct, Sustainability_Score\n- When asked to filter suppliers by criteria, list ONLY suppliers that match ALL criteria\n- Contract_Tier values are: Tier-1, Tier-2, Tier-3\n- Active_Disruptions value of \"None\" means no disruption\n- Always state how many matching suppliers you found\n- Always cite Policy section numbers when referencing rules\n\nContext: {context}",
+          "inputModeration": ""
+        },
+        "outputAnchors": [
+          {
+            "id": "conversationalRetrievalQAChain_0-output-conversationalRetrievalQAChain-ConversationalRetrievalQAChain|BaseChain|Runnable",
+            "name": "conversationalRetrievalQAChain",
+            "label": "ConversationalRetrievalQAChain",
+            "description": "Document QA - built on RetrievalQAChain to provide a chat history component",
+            "type": "ConversationalRetrievalQAChain | BaseChain | Runnable"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "width": 300,
+      "height": 538,
+      "positionAbsolute": {
+        "x": 935.3026089478051,
+        "y": -339.5886461126846
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "id": "qdrant_0",
+      "position": {
+        "x": 542.2966404376474,
+        "y": 2.385641033386662
+      },
+      "type": "customNode",
+      "data": {
+        "id": "qdrant_0",
+        "label": "Qdrant",
+        "version": 5,
+        "name": "qdrant",
+        "type": "Qdrant",
+        "baseClasses": [
+          "Qdrant",
+          "VectorStoreRetriever",
+          "BaseRetriever"
+        ],
+        "category": "Vector Stores",
+        "description": "Upsert embedded data and perform similarity search upon query using Qdrant, a scalable open source vector database written in Rust",
+        "inputParams": [
+          {
+            "label": "Connect Credential",
+            "name": "credential",
+            "type": "credential",
+            "description": "Only needed when using Qdrant cloud hosted",
+            "optional": true,
+            "credentialNames": [
+              "qdrantApi"
+            ],
+            "id": "qdrant_0-input-credential-credential",
+            "display": true
+          },
+          {
+            "label": "Qdrant Server URL",
+            "name": "qdrantServerUrl",
+            "type": "string",
+            "placeholder": "http://localhost:6333",
+            "id": "qdrant_0-input-qdrantServerUrl-string",
+            "display": true
+          },
+          {
+            "label": "Qdrant Collection Name",
+            "name": "qdrantCollection",
+            "type": "string",
+            "acceptVariable": true,
+            "id": "qdrant_0-input-qdrantCollection-string",
+            "display": true
+          },
+          {
+            "label": "File Upload",
+            "name": "fileUpload",
+            "description": "Allow file upload on the chat",
+            "hint": {
+              "label": "How to use",
+              "value": "\n**File Upload**\n\nThis allows file upload on the chat. Uploaded files will be upserted on the fly to the vector store.\n\n**Note:**\n- You can only turn on file upload for one vector store at a time.\n- At least one Document Loader node should be connected to the document input.\n- Document Loader should be file types like PDF, DOCX, TXT, etc.\n\n**How it works**\n- Uploaded files will have the metadata updated with the chatId.\n- This will allow the file to be associated with the chatId.\n- When querying, metadata will be filtered by chatId to retrieve files associated with the chatId.\n"
+            },
+            "type": "boolean",
+            "additionalParams": true,
+            "optional": true,
+            "id": "qdrant_0-input-fileUpload-boolean",
+            "display": true
+          },
+          {
+            "label": "Vector Dimension",
+            "name": "qdrantVectorDimension",
+            "type": "number",
+            "default": 1536,
+            "additionalParams": true,
+            "id": "qdrant_0-input-qdrantVectorDimension-number",
+            "display": true
+          },
+          {
+            "label": "Content Key",
+            "name": "contentPayloadKey",
+            "description": "The key for storing text. Default to `content`",
+            "type": "string",
+            "default": "content",
+            "optional": true,
+            "additionalParams": true,
+            "id": "qdrant_0-input-contentPayloadKey-string",
+            "display": true
+          },
+          {
+            "label": "Metadata Key",
+            "name": "metadataPayloadKey",
+            "description": "The key for storing metadata. Default to `metadata`",
+            "type": "string",
+            "default": "metadata",
+            "optional": true,
+            "additionalParams": true,
+            "id": "qdrant_0-input-metadataPayloadKey-string",
+            "display": true
+          },
+          {
+            "label": "Upsert Batch Size",
+            "name": "batchSize",
+            "type": "number",
+            "step": 1,
+            "description": "Upsert in batches of size N",
+            "additionalParams": true,
+            "optional": true,
+            "id": "qdrant_0-input-batchSize-number",
+            "display": true
+          },
+          {
+            "label": "Similarity",
+            "name": "qdrantSimilarity",
+            "description": "Similarity measure used in Qdrant.",
+            "type": "options",
+            "default": "Cosine",
+            "options": [
+              {
+                "label": "Cosine",
+                "name": "Cosine"
+              },
+              {
+                "label": "Euclid",
+                "name": "Euclid"
+              },
+              {
+                "label": "Dot",
+                "name": "Dot"
+              }
+            ],
+            "additionalParams": true,
+            "id": "qdrant_0-input-qdrantSimilarity-options",
+            "display": true
+          },
+          {
+            "label": "Additional Collection Cofiguration",
+            "name": "qdrantCollectionConfiguration",
+            "description": "Refer to <a target=\"_blank\" href=\"https://qdrant.tech/documentation/concepts/collections\">collection docs</a> for more reference",
+            "type": "json",
+            "optional": true,
+            "additionalParams": true,
+            "id": "qdrant_0-input-qdrantCollectionConfiguration-json",
+            "display": true
+          },
+          {
+            "label": "Top K",
+            "name": "topK",
+            "description": "Number of top results to fetch. Default to 4",
+            "placeholder": "4",
+            "type": "number",
+            "additionalParams": true,
+            "optional": true,
+            "id": "qdrant_0-input-topK-number",
+            "display": true
+          },
+          {
+            "label": "Qdrant Search Filter",
+            "name": "qdrantFilter",
+            "description": "Only return points which satisfy the conditions",
+            "type": "json",
+            "additionalParams": true,
+            "optional": true,
+            "acceptVariable": true,
+            "id": "qdrant_0-input-qdrantFilter-json",
+            "display": true
+          }
+        ],
+        "inputAnchors": [
+          {
+            "label": "Document",
+            "name": "document",
+            "type": "Document",
+            "list": true,
+            "optional": true,
+            "id": "qdrant_0-input-document-Document",
+            "display": true
+          },
+          {
+            "label": "Embeddings",
+            "name": "embeddings",
+            "type": "Embeddings",
+            "id": "qdrant_0-input-embeddings-Embeddings",
+            "display": true
+          },
+          {
+            "label": "Record Manager",
+            "name": "recordManager",
+            "type": "RecordManager",
+            "description": "Keep track of the record to prevent duplication",
+            "optional": true,
+            "id": "qdrant_0-input-recordManager-RecordManager",
+            "display": true
+          }
+        ],
+        "inputs": {
+          "document": "",
+          "embeddings": "{{cohereEmbeddings_0.data.instance}}",
+          "recordManager": "",
+          "qdrantServerUrl": "https://dcc98a59-5f91-4d64-b473-37efe567bea0.us-east-1-1.aws.cloud.qdrant.io",
+          "qdrantCollection": "scm-store",
+          "fileUpload": "",
+          "qdrantVectorDimension": "1024",
+          "contentPayloadKey": "content",
+          "metadataPayloadKey": "metadata",
+          "batchSize": "",
+          "qdrantSimilarity": "Cosine",
+          "qdrantCollectionConfiguration": "",
+          "topK": "40",
+          "qdrantFilter": ""
+        },
+        "outputAnchors": [
+          {
+            "name": "output",
+            "label": "Output",
+            "type": "options",
+            "description": "",
+            "options": [
+              {
+                "id": "qdrant_0-output-retriever-Qdrant|VectorStoreRetriever|BaseRetriever",
+                "name": "retriever",
+                "label": "Qdrant Retriever",
+                "description": "",
+                "type": "Qdrant | VectorStoreRetriever | BaseRetriever"
+              },
+              {
+                "id": "qdrant_0-output-vectorStore-Qdrant|VectorStore",
+                "name": "vectorStore",
+                "label": "Qdrant Vector Store",
+                "description": "",
+                "type": "Qdrant | VectorStore"
+              }
+            ],
+            "default": "retriever"
+          }
+        ],
+        "outputs": {
+          "output": "retriever"
+        },
+        "selected": false
+      },
+      "width": 300,
+      "height": 712,
+      "selected": false,
+      "dragging": false,
+      "positionAbsolute": {
+        "x": 542.2966404376474,
+        "y": 2.385641033386662
+      }
+    },
+    {
+      "id": "cohereEmbeddings_0",
+      "position": {
+        "x": 154.26012552913124,
+        "y": -506.4595312210281
+      },
+      "type": "customNode",
+      "data": {
+        "id": "cohereEmbeddings_0",
+        "label": "Cohere Embedding",
+        "version": 3,
+        "name": "cohereEmbeddings",
+        "type": "CohereEmbeddings",
+        "baseClasses": [
+          "CohereEmbeddings",
+          "Embeddings"
+        ],
+        "category": "Embeddings",
+        "description": "Cohere API to generate embeddings for a given text",
+        "inputParams": [
+          {
+            "label": "Connect Credential",
+            "name": "credential",
+            "type": "credential",
+            "credentialNames": [
+              "cohereApi"
+            ],
+            "id": "cohereEmbeddings_0-input-credential-credential",
+            "display": true
+          },
+          {
+            "label": "Model Name",
+            "name": "modelName",
+            "type": "asyncOptions",
+            "loadMethod": "listModels",
+            "default": "embed-english-v2.0",
+            "id": "cohereEmbeddings_0-input-modelName-asyncOptions",
+            "display": true
+          },
+          {
+            "label": "Type",
+            "name": "inputType",
+            "type": "options",
+            "description": "Specifies the type of input passed to the model. Required for embedding models v3 and higher. <a target=\"_blank\" href=\"https://docs.cohere.com/reference/embed\">Official Docs</a>",
+            "options": [
+              {
+                "label": "search_document",
+                "name": "search_document",
+                "description": "Use this to encode documents for embeddings that you store in a vector database for search use-cases"
+              },
+              {
+                "label": "search_query",
+                "name": "search_query",
+                "description": "Use this when you query your vector DB to find relevant documents."
+              },
+              {
+                "label": "classification",
+                "name": "classification",
+                "description": "Use this when you use the embeddings as an input to a text classifier"
+              },
+              {
+                "label": "clustering",
+                "name": "clustering",
+                "description": "Use this when you want to cluster the embeddings."
+              }
+            ],
+            "default": "search_query",
+            "optional": true,
+            "id": "cohereEmbeddings_0-input-inputType-options",
+            "display": true
+          }
+        ],
+        "inputAnchors": [],
+        "inputs": {
+          "modelName": "embed-english-v3.0",
+          "inputType": "search_query"
+        },
+        "outputAnchors": [
+          {
+            "id": "cohereEmbeddings_0-output-cohereEmbeddings-CohereEmbeddings|Embeddings",
+            "name": "cohereEmbeddings",
+            "label": "CohereEmbeddings",
+            "description": "Cohere API to generate embeddings for a given text",
+            "type": "CohereEmbeddings | Embeddings"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "width": 300,
+      "height": 473,
+      "selected": false,
+      "dragging": false,
+      "positionAbsolute": {
+        "x": 154.26012552913124,
+        "y": -506.4595312210281
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "groqChat_0",
+      "sourceHandle": "groqChat_0-output-groqChat-GroqChat|BaseChatModel|BaseLanguageModel|Runnable",
+      "target": "conversationalRetrievalQAChain_0",
+      "targetHandle": "conversationalRetrievalQAChain_0-input-model-BaseChatModel",
+      "type": "buttonedge",
+      "id": "groqChat_0-groqChat_0-output-groqChat-GroqChat|BaseChatModel|BaseLanguageModel|Runnable-conversationalRetrievalQAChain_0-conversationalRetrievalQAChain_0-input-model-BaseChatModel"
+    },
+    {
+      "source": "qdrant_0",
+      "sourceHandle": "qdrant_0-output-retriever-Qdrant|VectorStoreRetriever|BaseRetriever",
+      "target": "conversationalRetrievalQAChain_0",
+      "targetHandle": "conversationalRetrievalQAChain_0-input-vectorStoreRetriever-BaseRetriever",
+      "type": "buttonedge",
+      "id": "qdrant_0-qdrant_0-output-retriever-Qdrant|VectorStoreRetriever|BaseRetriever-conversationalRetrievalQAChain_0-conversationalRetrievalQAChain_0-input-vectorStoreRetriever-BaseRetriever"
+    },
+    {
+      "source": "cohereEmbeddings_0",
+      "sourceHandle": "cohereEmbeddings_0-output-cohereEmbeddings-CohereEmbeddings|Embeddings",
+      "target": "qdrant_0",
+      "targetHandle": "qdrant_0-input-embeddings-Embeddings",
+      "type": "buttonedge",
+      "id": "cohereEmbeddings_0-cohereEmbeddings_0-output-cohereEmbeddings-CohereEmbeddings|Embeddings-qdrant_0-qdrant_0-input-embeddings-Embeddings"
+    }
+  ]
+}
