@@ -41,7 +41,7 @@ Public Chatbot URL
 - CSV: Recursive Character Text Splitter, Chunk Size 500, Overlap 50 → 4000 chunks
 - Result: Too many chunks, retrieval quality poor, LLM context flooded with irrelevant rows
 
-### Configuration 2 (Final — Used)
+### Configuration 2 (Final - Used)
 - PDF: Recursive Character Text Splitter, Chunk Size 1000, Overlap 200 → 19 chunks
 - Supplier Summaries: Recursive Character Text Splitter, Chunk Size 500, Overlap 50 → 126 chunks
 - Analytical Summaries: No splitter → 5 chunks (one pre-computed answer per key business question)
