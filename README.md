@@ -136,8 +136,13 @@ Category average defect rates:
 ---
 
 ## What I Would Improve
-1. **Replace supplier_summaries.txt with direct CSV ingestion** — Flowise Cloud free tier times out on 2000-row CSV upsert. Self-hosted Flowise or paid tier would handle this natively.
-2. **Add metadata filtering** — tag each chunk with supplier tier, region, risk level for precise filtered retrieval instead of relying on semantic search alone.
-3. **Dynamic Top K** — use higher K for aggregate queries (list all matching X), lower K for specific supplier lookups.
-4. **Conversation memory persistence** — current setup uses in-session memory only; a persistent store (Redis/Postgres) would enable cross-session context.
-5. **Hybrid search** — combine semantic search with BM25 keyword search for exact supplier ID lookups (e.g. "tell me about SUP-042").
+1. **Replace supplier_summaries.txt with direct CSV ingestion** 
+- Flowise Cloud free tier times out on 2000-row CSV upsert. Self-hosted Flowise or paid tier would handle this natively.
+2. **Add metadata filtering** 
+- tag each chunk with supplier tier, region, risk level for precise filtered retrieval instead of relying on semantic search alone.
+3. **Dynamic Top K** 
+-use higher K for aggregate queries (list all matching X), lower K for specific supplier lookups.
+4. **Conversation memory persistence** 
+- current setup uses in-session memory only; a persistent store would enable cross-session context.
+5. **Hybrid search** 
+- combine semantic search with BM25 keyword search for exact supplier ID lookups (e.g. "tell me about SUP-042").
