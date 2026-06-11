@@ -10,7 +10,8 @@ A RAG-based supply chain chatbot built with Flowise that answers questions about
 | Component | Tool |
 |---|---|
 | Platform | Flowise Cloud |
-| LLM | Groq — llama-3.3-70b-versatile |
+| LLM | Groq : llama-3.3-70b-versatile | 
+| Or  | Mistral : mistral-small-latest |
 | Embeddings | Cohere — embed-english-v3.0 |
 | Vector Store | Qdrant Cloud |
 | Data Sources | SupplyChain_Governance_Policy_v3.2.pdf + supplier_summaries.txt |
